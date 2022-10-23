@@ -1,24 +1,22 @@
-import express from 'express';
-import devBundle from "./devBundle";
-import path from 'path';
-import template from './../template';
+import app from './express';
+import config from './../config/config';
+import mongoose from 'mongoose';
 
-const app = express();
-const CURRENT_WORKING_DIR = process.cwd();
-
-devBundle.compile(app);
-app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')));
-
-app.get('/', (req, res) => {
-    res.status(200).send(template());
-})
-
-
-let port = process.env.PORT || 3000;
-
-app.listen(port, function onStart (err) {
+app.listen(config.port, (err) => {
     if (err) {
-        console.log(err)
+        console.log(err);
     }
-    console.info('Server started on port %s.', port);
+    console.info(`Server started on port ${config.port}`);
+});
+
+mongoose.Promise = global.Promise;
+mongoose.connect(config.mongoUri, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
 })
+    .then(() => console.log('Connected to MongoDB...'))
+
+mongoose.connection.on('error', () => {
+    throw new Error(`Unable to connect to database: ${config.mongoUri}`);
+});
