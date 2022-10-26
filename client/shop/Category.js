@@ -1,50 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { ShopContext } from "../../Store";
+import { Link } from "react-router-dom";
+import ProductList from "./ProductList";
+import Cart from "./Cart";
 import { v4 } from "uuid";
 
-function Category() {
-  const [category, setCategory] = useState([]);
-  const [products, setProducts] = useState([]);
+const Category = () => {
+  const { categories, selectedCategory, updateCategory } =
+    useContext(ShopContext);
+  const [selected, setSelected] = useState(false);
 
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/categories`)
-      .then((res) => res.json())
-      .then((json) => {
-        setCategory(json);
-      })
-      .catch((err) => console.log(err.message));
-  }, []);
-
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/`)
-      .then((res) => res.json())
-      .then((json) => {
-        // Save post into state
-        setProducts(json);
-      })
-      .catch((err) => console.log(err.message));
-  }, []);
+  const handleClick = (category) => {
+    updateCategory(category);
+    setSelected(true);
+  };
 
   return (
     <>
-      <h1>Category</h1>
-      <p>Welcome, please select a category</p>
+      <div>
+        <p>category</p>
+      </div>
       <ul>
-        {category.map((item, i) => (
-          <li key={v4()}>{category[i]}</li>
+        {categories.map((category) => (
+          <li key={v4()} onClick={() => handleClick(category)}>
+            {category}
+          </li>
         ))}
       </ul>
-      {/*            <h1>Product List</h1>
-            <ul>
-                         {products.filter(product => product.category === 'jewelery').map((post) => (
-          <li key={post.id}>{post.category}</li>
-        ))}
-
-                {products.map((product) => (
-                    <li key={product.id}>{product.title}</li>
-                ))}
-            </ul>*/}
+      {selectedCategory && selected ? (
+        <ProductList />
+      ) : (
+        "please select a category"
+      )}
     </>
   );
-}
+};
 
 export default Category;

@@ -55,7 +55,7 @@ export default function Signup() {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  const handleClose = (event) => (reason) => {
+  const handleClose = () => (reason) => {
     if (reason !== "backdropClick" && reason !== "escapeKeyDown") {
       setValues({ ...values, open: false });
     }
