@@ -101,7 +101,6 @@ const Store = () => {
         <Route path="/product-list" component={ProductList} />
         <Route path="/cart" component={Cart} />
       </Switch>
-      {/*<div>{cart.length} items</div>*/}
     </ShopContext.Provider>
   );
 };
