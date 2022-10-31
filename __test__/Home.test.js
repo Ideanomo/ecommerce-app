@@ -1,6 +1,9 @@
+/**
+ * @jest-environment jsdom
+ */
 import { shallow } from "enzyme";
 import React from "react";
-import Home from "./Home";
+import Home from "../client/core/Home";
 import { Link } from "react-router-dom";
 
 describe("<Home />", () => {
@@ -11,7 +14,6 @@ describe("<Home />", () => {
   });
 
   it("has a single paragraph", () => {
-    console.log(wrapper.debug());
     expect(wrapper.find("p")).toHaveLength(1);
   });
 
@@ -22,8 +24,5 @@ describe("<Home />", () => {
   it("contains the text, 'This is the Home page.'", () => {
     const paragraph = wrapper.find("p");
     expect(paragraph.text()).toEqual("This is the Home page.");
-  });
-  it("contains the text, 'This is the home page.'", () => {
-    expect(wrapper.find("p")).toBe("This is the home page.");
   });
 });

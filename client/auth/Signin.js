@@ -132,9 +132,7 @@ export default function Signin(props) {
         <br />
         {values.error && (
           <Typography component="p" color="error">
-            <Icon color="error" className={classes.error}>
-              error
-            </Icon>
+            <Icon color="error" className={classes.error}></Icon>
             {values.error}
           </Typography>
         )}

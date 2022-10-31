@@ -2,8 +2,8 @@ const create = async (user) => {
     try {
         let response = await fetch("/api/users/", {
             method: "POST",
-            header: {
-                Accept: "application/json",
+            headers: {
+                "Accept": "application/json",
                 "Content-type": "application/json",
             },
             body: JSON.stringify(user),
