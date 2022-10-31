@@ -4,7 +4,7 @@
 - Response stored on successful submission
 - Show product categories on login
 - Show category product list when category selected
-- Add/Remove to cart buttons for products, adds/removes to/from cart
+- Add/Remove to/from cart buttons for products, adds/removes to/from cart
 - Number of current cart items visible on category and product list pages
 - Unit test frontend and backend
 

@@ -20,7 +20,6 @@ const Store = () => {
 
   const updateCategory = (category) => {
     setSelectedCategory(category);
-    // console.log("current category is: ", category);
   };
 
   const addToCart = (product) => {

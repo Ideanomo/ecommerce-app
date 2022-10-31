@@ -26,7 +26,6 @@ describe("Signin", () => {
   describe("User signs in with email and password", () => {
     beforeEach(async () => {
       credentials = await signin(user);
-      console.log("credentials:", credentials);
     });
 
     it("Then the correct response is sent back", () => {

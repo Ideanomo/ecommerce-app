@@ -49,10 +49,6 @@ export default function Signin(props) {
   });
   const [errors, setErrors] = useState({});
 
-  const submit = () => {
-    console.log(" Submitted");
-  };
-
   const clickSubmit = () => {
     const user = {
       email: values.email || undefined,
